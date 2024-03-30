@@ -2,19 +2,21 @@ import os
 import requests
 from flask import Flask, request
 from dotenv import load_dotenv
+from flask_cors import CORS
 
 load_dotenv(dotenv_path="./.env.local")
 
 UNSPLASH_URL='https://api.unsplash.com/photos/random'
 UNSPLASH_KEY=os.environ.get("UNSPLASH_KEY", "")
-FLASK_DEBUG=bool(os.environ.get("FLASK_DEBUG", True))
+DEBUG=bool(os.environ.get("FLASK_DEBUG", True))
 
 if not UNSPLASH_KEY:
   raise EnvironmentError("Authorization key absent in .env.local")
 
 app = Flask(__name__)
+CORS(app)
 
-app.config["FLASK_DEBUG"] = FLASK_DEBUG
+app.config["FLASK_DEBUG"] = DEBUG
 
 @app.route('/new-image')
 def new_image():
