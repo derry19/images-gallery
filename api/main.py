@@ -7,11 +7,14 @@ load_dotenv(dotenv_path="./.env.local")
 
 UNSPLASH_URL='https://api.unsplash.com/photos/random'
 UNSPLASH_KEY=os.environ.get("UNSPLASH_KEY", "")
+FLASK_DEBUG=bool(os.environ.get("FLASK_DEBUG", True))
 
 if not UNSPLASH_KEY:
-  raise EnvironmentError("Authorization key absent in .env.local");
+  raise EnvironmentError("Authorization key absent in .env.local")
 
 app = Flask(__name__)
+
+app.config["FLASK_DEBUG"] = FLASK_DEBUG
 
 @app.route('/new-image')
 def new_image():
