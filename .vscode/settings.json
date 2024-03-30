@@ -6,6 +6,9 @@
         "javascriptreact"
     ],
     "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
+        "source.fixAll.eslint": "explicit"
+    },
+    "[python]": {
+        "editor.formatOnSave": true
     }
 }
